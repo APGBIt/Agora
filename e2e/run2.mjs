@@ -126,7 +126,7 @@ await step('improvisación con cuenta regresiva', async () => {
   await page.getByRole('button', { name: 'Empezar a grabar' }).click();
   await page.getByText('segundos para pensar').waitFor({ timeout: 8000 });
   await shot('pensar');
-  await page.getByRole('button', { name: /Estoy lista/ }).click();
+  await page.getByRole('button', { name: /Ya tengo mi idea/ }).click();
   await page.getByText('REC', { exact: true }).waitFor({ timeout: 8000 });
   await page.waitForTimeout(5000);
   await page.getByRole('button', { name: 'Detener y analizar' }).click();

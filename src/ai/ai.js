@@ -78,7 +78,7 @@ export function aiErrorText(e) {
 
 // ---------- Indicaciones ----------
 
-const RULES = 'Eres una coach de oratoria en español (República Dominicana). Tono cálido, directo y profesional. Tutea a la persona.';
+const RULES = 'Eres una coach de oratoria en español (República Dominicana). Tono cálido, directo y profesional. Tutea a la persona y usa lenguaje neutro en cuanto a género (no asumas si es hombre o mujer).';
 
 export function improvePrompt({ transcript, title, goal, framework }) {
   return `${RULES}

@@ -94,7 +94,7 @@ await step('ayuda y preguntas', async () => {
   await page.goto(`${url}#/ajustes`);
   await page.getByRole('link', { name: /Ayuda y preguntas frecuentes/ }).click();
   await page.getByText('¿Qué mide Ágora?').click();
-  await page.getByText('Creada por Verónica Ogando Lara').waitFor();
+  await page.getByText('Creada por Aristide Piña').waitFor();
   await shot('ayuda');
 });
 
@@ -106,7 +106,7 @@ await step('política de privacidad', async () => {
 
 await step('ajustes con crédito', async () => {
   await page.goto(`${url}#/ajustes`);
-  await page.getByText(/creada por Verónica Ogando Lara · versión 1.1/).waitFor();
+  await page.getByText(/creada por Aristide Piña · versión 1.2/).waitFor();
 });
 
 console.log('errores:', errors.length ? errors.join('\n') : 'ninguno');

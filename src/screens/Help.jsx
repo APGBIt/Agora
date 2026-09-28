@@ -2,8 +2,8 @@ import { Icon } from '../ui/icons.jsx';
 import { TopBar } from '../ui/kit.jsx';
 import { PACE_MIN, PACE_MAX } from '../analysis/scoring.js';
 
-export const AUTHOR = 'Verónica Ogando Lara';
-export const VERSION = '1.1';
+export const AUTHOR = 'Aristide Piña';
+export const VERSION = '1.2';
 export const POLICY_DATE = '28 de septiembre de 2026';
 
 function Faq({ q, children }) {
@@ -66,7 +66,7 @@ export function Help() {
           <p>La hace el reconocimiento de voz de tu navegador y puede confundir palabras, sobre todo con ruido. Úsala como guía: lo más útil es la tendencia de tus prácticas a lo largo de las semanas.</p>
         </Faq>
         <Faq q="¿Cómo funcionan los ejercicios de canto?">
-          <p>Primero tarareas una nota cómoda para que Ágora ubique tu voz. Luego escuchas cada nota y la repites; el afinador te muestra si estás alta o baja. En entonación, Ágora escucha si tu tono sube (pregunta) o baja (afirmación) al final de la frase.</p>
+          <p>Primero tarareas una nota cómoda para que Ágora ubique tu voz. Luego escuchas cada nota y la repites; el afinador te muestra si tu tono va alto o bajo. En entonación, Ágora escucha si tu tono sube (pregunta) o baja (afirmación) al final de la frase.</p>
         </Faq>
       </Group>
 

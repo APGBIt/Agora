@@ -21,7 +21,7 @@ export const TIPS = [
   'Si te preguntan algo difícil, reconoce la pregunta antes de responder.',
   'Una historia necesita un obstáculo. Sin conflicto, no hay atención.',
   'Evita disculparte por hablar: «perdón que les quite tiempo» resta fuerza.',
-  'Afirma lo que sabes. «Creo que» sobra cuando estás segura.',
+  'Afirma lo que sabes. «Creo que» sobra cuando tienes certeza.',
   'Termina tu frase final y haz silencio. No añadas «y bueno, eso es todo».',
   'Bebe agua a temperatura ambiente antes de hablar; el agua fría tensa la garganta.',
   'Apóyate en el abdomen, no en la garganta, para subir el volumen.',

@@ -103,7 +103,7 @@ export function Challenge({ id }) {
             {ch.steps.map((st, i) => <li key={i}><strong>{st.name}</strong>{`: ${st.hint}`}</li>)}
           </ul>
         )}
-        <button class="btn btn-block" type="button" onClick={() => { setPrep(0); start(); }}>Ya estoy lista</button>
+        <button class="btn btn-block" type="button" onClick={() => { setPrep(0); start(); }}>Empezar ahora</button>
       </Sheet>
 
       <Sheet open={list} onClose={() => setList(false)} title="Todos los retos">

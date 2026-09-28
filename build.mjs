@@ -39,7 +39,7 @@ const full = `<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>${TITLE}</title>
-<meta name="author" content="Verónica Ogando Lara">
+<meta name="author" content="Aristide Piña">
 <meta name="description" content="${DESC}">
 <meta name="theme-color" content="#0E5C57">
 <meta name="apple-mobile-web-app-capable" content="yes">

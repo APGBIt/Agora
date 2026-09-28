@@ -1,6 +1,6 @@
 # Ágora
 
-Creada por **Verónica Ogando Lara**.
+Creada por **Aristide Piña**.
 
 App web para entrenar oratoria, pronunciación y storytelling con retos diarios. Funciona en el navegador del celular o de la computadora y se puede instalar como app.
 

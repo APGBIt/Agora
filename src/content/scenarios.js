@@ -11,7 +11,7 @@ export const SCENARIOS = [
       'Hábleme de un error profesional y de lo que aprendió de él.',
       'Describa una situación en la que trabajó bajo mucha presión.',
       '¿Cómo maneja un conflicto con un compañero de trabajo? Deme un ejemplo.',
-      'Cuénteme de un logro del que se sienta orgullosa.',
+      'Cuénteme de un logro que le enorgullezca.',
       '¿Por qué deberíamos elegirla a usted para este puesto?',
     ],
     followups: {

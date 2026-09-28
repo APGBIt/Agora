@@ -152,7 +152,7 @@ export const EXERCISES = [
   },
   {
     id: 'canto-escala', cat: 'canto', type: 'pitch', title: 'Escala do-re-mi', minutes: 2, level: 1, xp: 30,
-    desc: 'Escucha cada nota y repítela. La app te dice si estás afinada.',
+    desc: 'Escucha cada nota y repítela. La app te dice si estás en el tono.',
     intervals: [0, 2, 4, 5, 7, 5, 4, 2, 0],
     hold: 2.2,
     tip: 'Si te quedas abajo, sonríe un poco y piensa la nota «arriba» antes de cantarla.',

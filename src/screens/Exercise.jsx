@@ -468,7 +468,7 @@ function Tuner({ cents }) {
         <span style={{ position: 'absolute', left: '50%', top: -3, bottom: -3, width: 2, background: 'var(--teal-mid)' }} />
         {c != null && <span style={{ position: 'absolute', left: `calc(${50 + (c / 400) * 100}% - 3px)`, top: -8, width: 6, height: 30, borderRadius: 3, background: ok ? 'var(--teal)' : 'var(--amber)', transition: 'left .12s linear' }} />}
       </div>
-      <div class="between tiny muted"><span>Baja</span><span>Afinada</span><span>Alta</span></div>
+      <div class="between tiny muted"><span>Bajo</span><span>En el tono</span><span>Alto</span></div>
     </div>
   );
 }
@@ -581,7 +581,7 @@ function PitchMatch({ ex }) {
   const target = plan.current && cur.i >= 0 ? plan.current.targets[cur.i] : null;
   const sung = notes.filter((n) => n && !n.missed);
   const avg = sung.length ? sung.reduce((a, n) => a + n.cents, 0) / sung.length : null;
-  const tendency = avg == null ? null : avg > 25 ? 'Tiendes a quedarte un poco alta: relaja la garganta y apunta un poco más abajo.' : avg < -25 ? 'Tiendes a quedarte un poco baja: piensa la nota «arriba» antes de cantarla y apoya el aire.' : 'Tu afinación está bien centrada.';
+  const tendency = avg == null ? null : avg > 25 ? 'Tu tono tiende a quedar un poco alto: relaja la garganta y apunta un poco más abajo.' : avg < -25 ? 'Tu tono tiende a quedar un poco bajo: piensa la nota «arriba» antes de cantarla y apoya el aire.' : 'Tu afinación está bien centrada.';
   const sequence = plan.current ? plan.current.targets : ex.intervals.map((iv) => ({ iv, name: SOLFA[iv] || '·' }));
 
   return (
@@ -608,13 +608,13 @@ function PitchMatch({ ex }) {
             <span class="eyebrow teal-t">{cur.sub === 'listen' ? 'Escucha…' : cur.sub === 'sing' ? '¡Canta!' : 'Respira'}</span>
             <span class="display" style={{ fontSize: 60, lineHeight: 1 }}>{target ? target.name : '…'}</span>
             <Tuner cents={cur.sub === 'sing' ? cur.cents : null} />
-            <span class="small strong" style={{ minHeight: 20 }}>{cur.sub !== 'sing' ? '' : cur.cents == null ? 'Canta con «la» o «mmm»' : Math.abs(cur.cents) <= 50 ? '¡Afinada!' : cur.cents > 0 ? 'Un poco alta: baja' : 'Un poco baja: sube'}</span>
+            <span class="small strong" style={{ minHeight: 20 }}>{cur.sub !== 'sing' ? '' : cur.cents == null ? 'Canta con «la» o «mmm»' : Math.abs(cur.cents) <= 50 ? '¡En el tono!' : cur.cents > 0 ? 'Un poco alto: baja' : 'Un poco bajo: sube'}</span>
           </>
         )}
         {phase === 'done' && (
           <>
             <span class="display tabular" style={{ fontSize: 56, lineHeight: 1 }}>{score != null ? `${score} %` : '—'}</span>
-            <span class="strong">{score == null ? 'No alcanzamos a medir ninguna nota.' : score >= 75 ? '¡Muy afinada!' : score >= 45 ? 'Vas bien: tu oído se está entrenando.' : 'Buen comienzo. Repite despacio y escucha bien cada nota.'}</span>
+            <span class="strong">{score == null ? 'No alcanzamos a medir ninguna nota.' : score >= 75 ? '¡Muy buena afinación!' : score >= 45 ? 'Vas bien: tu oído se está entrenando.' : 'Buen comienzo. Repite despacio y escucha bien cada nota.'}</span>
             {tendency && <span class="small muted" style={{ lineHeight: 1.5 }}>{tendency}</span>}
           </>
         )}
@@ -677,7 +677,7 @@ function Intonation({ ex }) {
     if (!dir) return 'No escuchamos bien la frase. Dila un poco más fuerte.';
     if (it.want === 'sube') return dir === 'sube' ? '¡Bien! Tu tono subió: suena a pregunta.' : `Sonó a afirmación. Sube el tono en «${lastWord(it.text)}».`;
     if (dir === 'baja') return '¡Bien! Tu tono bajó: suena seguro y terminado.';
-    return dir === 'sube' ? 'Sonó a pregunta. Deja caer el tono al final para sonar segura.' : `Casi. Baja un poco más el tono en «${lastWord(it.text)}».`;
+    return dir === 'sube' ? 'Sonó a pregunta. Deja caer el tono al final para sonar con seguridad.' : `Casi. Baja un poco más el tono en «${lastWord(it.text)}».`;
   };
 
   const complete = (frames) => {

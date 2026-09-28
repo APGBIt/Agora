@@ -1,5 +1,6 @@
 import { useApp } from '../app/store.js';
-import { dayKey, missionsFor, todaysChallenge, currentFocus, weekRow, tipOfDay, twisterOfDay, MILESTONES } from '../app/logic.js';
+import { dayKey, dayNumber, missionsFor, todaysChallenge, currentFocus, weekRow, tipOfDay, twisterOfDay, MILESTONES } from '../app/logic.js';
+import { READINGS } from '../content/readings.js';
 import { FOCUS, SKILLS, levelFor } from '../content/meta.js';
 import { expressVersion } from '../content/challenges.js';
 import { Icon } from '../ui/icons.jsx';
@@ -32,6 +33,7 @@ export function Home() {
   const nextMilestone = MILESTONES.find((m) => m > s.streak.count) || null;
   const doneReto = s.history.some((e) => e.day === today && e.kind === 'reto' && e.refId === reto.id);
   const tw = twisterOfDay(today);
+  const reading = READINGS[dayNumber(today) % READINGS.length];
   const name = s.profile.name?.trim();
 
   const startExpress = () => {
@@ -134,7 +136,7 @@ export function Home() {
             <h2 class="title">Calentamiento rápido</h2>
             <a class="link-btn" href="#/entrenar">Ver todo</a>
           </div>
-          <div class="grid3">
+          <div class="grid2">
             <a class="mini-card" href="#/respiracion/resp-478">
               <span class="icon-circle tone-teal" style={{ width: 36, height: 36, borderRadius: 10 }}><Icon name="wind" size={20} /></span>
               <span class="t">Respiración 4-7-8</span>
@@ -145,10 +147,15 @@ export function Home() {
               <span class="t">Trabalenguas del día</span>
               <span class="tiny muted">1 min · Dicción</span>
             </a>
-            <a class="mini-card" href="#/improvisacion">
-              <span class="icon-circle tone-violet" style={{ width: 36, height: 36, borderRadius: 10 }}><Icon name="sparkle" size={20} /></span>
-              <span class="t">Un tema al azar</span>
-              <span class="tiny muted">1 min · Improvisa</span>
+            <a class="mini-card" href="#/ejercicio/canto-escala">
+              <span class="icon-circle tone-teal" style={{ width: 36, height: 36, borderRadius: 10 }}><Icon name="music" size={20} /></span>
+              <span class="t">Afina tu voz</span>
+              <span class="tiny muted">2 min · Canto</span>
+            </a>
+            <a class="mini-card" href={`#/temas/${reading.id}`}>
+              <span class="icon-circle tone-violet" style={{ width: 36, height: 36, borderRadius: 10 }}><Icon name="book" size={20} /></span>
+              <span class="t">{reading.title}</span>
+              <span class="tiny muted">{`Lectura · ${reading.cat}`}</span>
             </a>
           </div>
         </section>

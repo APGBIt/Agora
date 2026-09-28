@@ -385,7 +385,7 @@ export function Recorder({ query }) {
             <div class="count tabular">{thinkLeft}</div>
             <p class="muted">segundos para pensar · la grabación empieza sola</p>
           </div>
-          <button class="btn btn-lg" type="button" style={{ background: 'var(--r-teal)', color: '#0B2220' }} onClick={() => { setCount(3); setPhase('count'); }}>Estoy lista, empezar ya</button>
+          <button class="btn btn-lg" type="button" style={{ background: 'var(--r-teal)', color: '#0B2220' }} onClick={() => { setCount(3); setPhase('count'); }}>Ya tengo mi idea, empezar</button>
         </div>
       )}
 
@@ -452,7 +452,7 @@ export function Recorder({ query }) {
 
             <div class="hint" aria-live="polite">
               <Icon name="bulb" size={18} style={{ flexShrink: 0, color: 'var(--r-teal-ink)' }} />
-              <span>{phase === 'paused' ? 'En pausa. Toca reanudar cuando estés lista.' : hint ? hint.text : 'Respira y empieza con calma.'}</span>
+              <span>{phase === 'paused' ? 'En pausa. Toca reanudar cuando quieras seguir.' : hint ? hint.text : 'Respira y empieza con calma.'}</span>
             </div>
           </div>
 

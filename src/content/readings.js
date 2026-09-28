@@ -108,7 +108,7 @@ export const READINGS = [
     id: 'voz',
     cat: 'Ciencia y curiosidades',
     title: 'Lo que tu voz dice de ti',
-    text: 'Antes de entender tus palabras, quien te escucha ya está leyendo tu voz. El tono, el volumen y la velocidad revelan si estás nerviosa, entusiasmada o cansada. La voz nace cuando el aire de los pulmones hace vibrar las cuerdas vocales, dos pequeños pliegues en la garganta que se abren y se cierran cientos de veces por segundo. Luego la boca, la nariz y la garganta funcionan como una caja de resonancia que da a cada voz su color único. Por eso la voz se puede entrenar como un músculo: respirar desde el abdomen le da apoyo, relajar la mandíbula le da claridad y variar el tono le da vida. Tu voz no es fija; es un instrumento que aprendes a tocar.',
+    text: 'Antes de entender tus palabras, quien te escucha ya está leyendo tu voz. El tono, el volumen y la velocidad revelan si hay nervios, entusiasmo o cansancio. La voz nace cuando el aire de los pulmones hace vibrar las cuerdas vocales, dos pequeños pliegues en la garganta que se abren y se cierran cientos de veces por segundo. Luego la boca, la nariz y la garganta funcionan como una caja de resonancia que da a cada voz su color único. Por eso la voz se puede entrenar como un músculo: respirar desde el abdomen le da apoyo, relajar la mandíbula le da claridad y variar el tono le da vida. Tu voz no es fija; es un instrumento que aprendes a tocar.',
     words: [
       { w: 'resonancia', def: 'Prolongación y amplificación de un sonido dentro de un espacio.' },
       { w: 'cuerdas vocales', def: 'Pliegues de la laringe que vibran para producir la voz.' },
@@ -116,7 +116,7 @@ export const READINGS = [
     ],
     talk: [
       '¿Qué voz te inspira confianza (de la radio, el cine o tu entorno) y por qué?',
-      'Explica cómo se produce la voz como si hablaras con una niña de diez años.',
+      'Explica cómo se produce la voz como si hablaras con alguien de diez años.',
       '¿Se puede conocer a alguien solo por su voz? Da tu opinión con un ejemplo.',
     ],
     book: { title: 'Charlas TED: la guía oficial TED para hablar en público', author: 'Chris Anderson', why: 'Consejos prácticos de quien dirige las charlas TED.' },
@@ -150,7 +150,7 @@ export const READINGS = [
     ],
     talk: [
       '¿Qué te gustaría aprender este año y qué te detiene?',
-      'Cuenta algo que aprendiste de adulta y cómo lo lograste.',
+      'Cuenta algo que aprendiste en la adultez y cómo lo lograste.',
       '¿Debería la escuela enseñar a hablar en público? Defiende tu respuesta.',
     ],
     book: { title: 'Mindset: la actitud del éxito', author: 'Carol S. Dweck', why: 'Explica la mentalidad de crecimiento: las habilidades se desarrollan con esfuerzo.' },
@@ -184,7 +184,7 @@ export const READINGS = [
     ],
     talk: [
       'Cuenta en un minuto cómo llegaste a tu trabajo actual.',
-      '¿Qué historia te contaron de niña que todavía recuerdas? ¿Por qué se te quedó?',
+      '¿Qué historia te contaron en tu infancia que todavía recuerdas? ¿Por qué se te quedó?',
       '¿Convencen más los datos o las historias? Toma partido.',
     ],
     book: { title: 'Vivir para contarla', author: 'Gabriel García Márquez', why: 'Memorias de un maestro del relato: leyéndolo se aprende a narrar.' },

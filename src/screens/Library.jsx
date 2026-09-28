@@ -55,36 +55,35 @@ export function Library() {
 
         {!found && (
           <>
-            <a class="banner" href="#/simulador">
-              <span class="icon-circle" style={{ width: 48, height: 48, borderRadius: 24, background: 'var(--teal-chip)' }}><Icon name="chat" size={24} /></span>
-              <span class="stack-sm grow" style={{ gap: 4 }}>
-                <span class="eyebrow" style={{ opacity: 0.85 }}>Simulador</span>
-                <span style={{ fontSize: 17, fontWeight: 700 }}>Conversaciones de práctica</span>
-                <span class="small" style={{ opacity: 0.9, lineHeight: 1.4 }}>Una entrevistadora virtual te pregunta y repregunta.</span>
-              </span>
-              <Icon name="right" size={20} stroke={2} />
-            </a>
-
-            <a class="banner" href="#/temas" style={{ background: 'var(--violet)' }}>
-              <span class="icon-circle" style={{ width: 48, height: 48, borderRadius: 24, background: 'rgba(255,255,255,.16)' }}><Icon name="book" size={24} /></span>
-              <span class="stack-sm grow" style={{ gap: 4 }}>
-                <span class="eyebrow" style={{ opacity: 0.85 }}>Temas</span>
-                <span style={{ fontSize: 17, fontWeight: 700 }}>Lecturas y conversaciones</span>
-                <span class="small" style={{ opacity: 0.9, lineHeight: 1.4 }}>Lee en voz alta, suma palabras nuevas y ten temas para conversar.</span>
-              </span>
-              <Icon name="right" size={20} stroke={2} />
-            </a>
-
             <div class="grid2" style={{ gap: 12 }}>
-              {cats.map((c) => (
-                <a key={c.id} class="cat" href={`#/entrenar/${c.id}`}>
-                  <span class={`icon-circle tone-${c.tone}`}><Icon name={c.icon} size={22} /></span>
-                  <span class="t">{c.title}</span>
-                  <span class="d">{c.desc}</span>
-                  <span class={`n ${TONE_TEXT[c.tone]}`}>{`${c.group} · ${exercisesIn(c.id).length} ejercicios`}</span>
-                </a>
-              ))}
+              <a class="feature" href="#/simulador">
+                <span class="icon-circle" style={{ width: 40, height: 40, borderRadius: 20, background: 'rgba(255,255,255,.16)' }}><Icon name="chat" size={20} /></span>
+                <span class="t">Simulador de conversaciones</span>
+                <span class="d">Entrevistas, reuniones y preguntas difíciles.</span>
+              </a>
+              <a class="feature violet" href="#/temas">
+                <span class="icon-circle" style={{ width: 40, height: 40, borderRadius: 20, background: 'rgba(255,255,255,.16)' }}><Icon name="book" size={20} /></span>
+                <span class="t">Lecturas y conversaciones</span>
+                <span class="d">Lee en voz alta y ten temas para opinar.</span>
+              </a>
             </div>
+
+            {GROUPS.filter((g) => g !== 'Todos' && (group === 'Todos' || group === g)).map((g) => (
+              <section key={g} class="stack-sm" aria-label={g}>
+                <span class="eyebrow muted">{g}</span>
+                {cats.filter((c) => c.group === g).map((c) => (
+                  <a key={c.id} class="item" href={`#/entrenar/${c.id}`}>
+                    <span class={`icon-circle tone-${c.tone}`}><Icon name={c.icon} size={20} /></span>
+                    <div class="stack-sm grow" style={{ gap: 2, minWidth: 0 }}>
+                      <span class="t">{c.title}</span>
+                      <span class="d" style={{ lineHeight: 1.4 }}>{c.desc}</span>
+                    </div>
+                    <span class={`tiny strong ${TONE_TEXT[c.tone]}`} style={{ whiteSpace: 'nowrap' }}>{`${exercisesIn(c.id).length} ej.`}</span>
+                    <Icon name="right" size={18} stroke={2} />
+                  </a>
+                ))}
+              </section>
+            ))}
 
             <section class="stack" aria-label="Rutas guiadas" style={{ marginTop: 6 }}>
               <div class="stack-sm" style={{ gap: 4 }}>

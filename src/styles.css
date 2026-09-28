@@ -211,7 +211,9 @@ p { margin: 0; }
 .tone-sunken { background: var(--sunken); color: var(--muted-2); }
 
 /* ---------- Chips y píldoras ---------- */
-.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chips { display: flex; flex-wrap: nowrap; gap: 8px; overflow-x: auto; scrollbar-width: none; margin: 0 calc(-1 * var(--gutter)); padding: 2px var(--gutter); }
+.chips::-webkit-scrollbar { display: none; }
+.chips .chip { flex-shrink: 0; white-space: nowrap; }
 .chip { min-height: 38px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line-2); background: transparent; color: var(--ink); font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; }
 .chip.on { background: var(--teal); border-color: var(--teal); color: var(--on-teal); font-weight: 700; }
 .chip.on-violet { background: var(--violet); border-color: var(--violet); color: var(--surface); font-weight: 700; }
@@ -473,3 +475,10 @@ textarea.field.todo { border-style: dashed; border-color: var(--line-2); backgro
 .faq .a ul, .policy ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
 .policy .card p, .policy .card li { font-size: 14px; line-height: 1.6; color: var(--ink-2); }
 .policy .card { gap: 20px; }
+
+/* ---------- Accesos destacados ---------- */
+.feature { display: flex; flex-direction: column; gap: 8px; padding: 16px 14px; min-height: 156px; border-radius: 18px; text-decoration: none; background: var(--teal); color: var(--on-teal); }
+.feature.violet { background: var(--violet); }
+.feature .t { font-size: 16px; font-weight: 700; line-height: 1.25; }
+.feature .d { font-size: 13px; line-height: 1.4; opacity: .9; }
+.item .d { overflow-wrap: anywhere; }
