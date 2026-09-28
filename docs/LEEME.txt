@@ -1,0 +1,32 @@
+ÁGORA · Tu app de oratoria
+==========================
+
+Esta carpeta es la app completa. Funciona en el navegador y se puede instalar en el celular.
+Tu voz se analiza en el momento y NO se guarda. En el dispositivo solo quedan tus puntuaciones.
+
+1) PROBARLA EN TU COMPUTADORA (lo más rápido)
+   Abre el archivo index.html con Google Chrome o Microsoft Edge.
+   Permite el micrófono cuando te lo pida.
+
+2) USARLA EN TU CELULAR (con tu propio enlace, gratis)
+   Opción A · Netlify (sin programar):
+     a. Entra en https://app.netlify.com/drop desde tu computadora.
+     b. Arrastra ESTA CARPETA completa a la página.
+     c. Crea tu cuenta gratuita cuando te lo pida para que el enlace no caduque.
+     d. Abre el enlace (https://…netlify.app) en el celular.
+   Opción B · GitHub Pages: sube estos archivos a un repositorio y activa Pages.
+
+3) INSTALARLA COMO APP
+   Android (Chrome): menú ⋮ → «Instalar app» o «Agregar a la pantalla de inicio».
+   iPhone (Safari): botón Compartir → «Agregar a inicio».
+   Nota: en iPhone, la app instalada no puede transcribir la voz; en Safari sí.
+   El ritmo, las pausas, la energía y las vacilaciones se miden en ambos casos.
+
+4) TUS DATOS
+   Se guardan solo en el navegador donde usas la app. En Ajustes → «Guardar copia»
+   puedes descargar una copia y recuperarla en otro dispositivo.
+
+5) IA (OPCIONAL)
+   En Ajustes puedes agregar una clave de API de Anthropic para activar la versión
+   mejorada con IA, la revisión de historias y el simulador conversacional.
+   Solo se envía texto, nunca audio.

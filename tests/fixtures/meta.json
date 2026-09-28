@@ -1,0 +1,86 @@
+{
+ "rate_marta_120": {
+  "kind": "rate",
+  "speed": 120,
+  "words": 50,
+  "ortho": 97,
+  "synalepha": 87
+ },
+ "rate_marta_150": {
+  "kind": "rate",
+  "speed": 150,
+  "words": 50,
+  "ortho": 97,
+  "synalepha": 87
+ },
+ "rate_marta_180": {
+  "kind": "rate",
+  "speed": 180,
+  "words": 50,
+  "ortho": 97,
+  "synalepha": 87
+ },
+ "rate_marta_210": {
+  "kind": "rate",
+  "speed": 210,
+  "words": 50,
+  "ortho": 97,
+  "synalepha": 87
+ },
+ "rate_proyecto_120": {
+  "kind": "rate",
+  "speed": 120,
+  "words": 40,
+  "ortho": 80,
+  "synalepha": 76
+ },
+ "rate_proyecto_150": {
+  "kind": "rate",
+  "speed": 150,
+  "words": 40,
+  "ortho": 80,
+  "synalepha": 76
+ },
+ "rate_proyecto_180": {
+  "kind": "rate",
+  "speed": 180,
+  "words": 40,
+  "ortho": 80,
+  "synalepha": 76
+ },
+ "rate_proyecto_210": {
+  "kind": "rate",
+  "speed": 210,
+  "words": 40,
+  "ortho": 80,
+  "synalepha": 76
+ },
+ "pauses": {
+  "kind": "pauses",
+  "micro": 1,
+  "effective": 2,
+  "long": 1
+ },
+ "hesitations": {
+  "kind": "hesitations",
+  "expected": 2
+ },
+ "enddrop": {
+  "kind": "enddrop",
+  "expected_ratio_min": 0.6
+ },
+ "flat": {
+  "kind": "enddrop",
+  "expected_ratio_max": 0.3
+ },
+ "tone200": {
+  "kind": "tone",
+  "f0": 200
+ },
+ "tonevar": {
+  "kind": "tonevar"
+ },
+ "noise_only": {
+  "kind": "silence"
+ }
+}

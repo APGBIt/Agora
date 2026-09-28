@@ -1,0 +1,6 @@
+node_modules/
+dist/
+artifact/
+agora-web.zip
+e2e/shots/
+.DS_Store
