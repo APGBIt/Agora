@@ -89,6 +89,13 @@ export function Improv({ query }) {
         </div>
       </div>
 
+      {mode === 'tema' && (
+        <a class="go-row" href="#/temas" style={{ background: 'var(--violet-soft)', color: 'var(--violet-ink)' }}>
+          <span class="row" style={{ gap: 10 }}><Icon name="book" size={18} />¿Te falta material? Lee sobre un tema primero</span>
+          <Icon name="right" size={18} stroke={2} />
+        </a>
+      )}
+
       <div class="footer">
         <button class="btn btn-violet-outline" type="button" onClick={() => setN(n + 1)}><Icon name="shuffle" size={18} />Otro</button>
         <button class="btn wide" type="button" onClick={start}><Icon name="mic" size={18} />Empezar</button>

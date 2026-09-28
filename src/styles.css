@@ -459,3 +459,17 @@ textarea.field.todo { border-style: dashed; border-color: var(--line-2); backgro
   body { background: var(--sunken); }
   .app { box-shadow: 0 0 0 1px var(--line); }
 }
+
+/* ---------- Ayuda y política ---------- */
+.faq { display: flex; flex-direction: column; }
+.faq details { border-top: 1px solid var(--line); }
+.faq details:first-child { border-top: 0; }
+.faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 48px; padding: 10px 0; font-weight: 700; font-size: 15px; line-height: 1.35; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: '+'; font-size: 22px; line-height: 1; color: var(--teal); font-weight: 500; flex-shrink: 0; }
+.faq details[open] summary::after { content: '−'; }
+.faq .a { padding: 0 0 14px; font-size: 14px; line-height: 1.55; color: var(--ink-2); display: flex; flex-direction: column; gap: 8px; }
+.faq .a p, .policy p { margin: 0; }
+.faq .a ul, .policy ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
+.policy .card p, .policy .card li { font-size: 14px; line-height: 1.6; color: var(--ink-2); }
+.policy .card { gap: 20px; }

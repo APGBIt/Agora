@@ -64,7 +64,23 @@ export function exerciseConfig(ex, extra = {}) {
   return base;
 }
 
-export function improvConfig({ q, cat, hint, framework, mode }) {
+export function readingConfig(r) {
+  return {
+    kind: 'lectura',
+    refId: `lec-${r.id}`,
+    title: r.title,
+    xp: 30,
+    targetSec: null,
+    maxSec: 300,
+    steps: [],
+    script: r.text,
+    teleprompter: true,
+    noTiming: true,
+    backTo: `/temas/${r.id}`,
+  };
+}
+
+export function improvConfig({ q, cat, hint, framework, mode, backTo }) {
   return {
     kind: 'improv',
     refId: mode || 'tema',
@@ -76,7 +92,7 @@ export function improvConfig({ q, cat, hint, framework, mode }) {
     steps: [],
     prompt: { label: cat || 'Tema', text: q, hint },
     framework,
-    backTo: '/improvisacion',
+    backTo: backTo || '/improvisacion',
   };
 }
 

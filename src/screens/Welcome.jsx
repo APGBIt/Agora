@@ -83,6 +83,7 @@ export function Welcome() {
         <div class="stack-sm" style={{ gap: 2 }}>
           <span class="strong">Tu voz no se guarda</span>
           <span class="small" style={{ lineHeight: 1.45 }}>El audio se analiza en el momento y se borra al terminar. Solo quedan tus puntuaciones, en este dispositivo.</span>
+          <a class="small strong" href="#/privacidad" style={{ color: 'var(--teal)' }}>Lee cómo cuidamos tus datos</a>
         </div>
       </section>
 

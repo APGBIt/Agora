@@ -1,4 +1,9 @@
 export const TIPS = [
+  'Canta cinco minutos al día: el canto estira tu rango de tono y tu voz hablada se vuelve más expresiva.',
+  'Las preguntas de sí o no suben al final; las afirmaciones bajan. Si todo te suena igual, exagera la diferencia.',
+  'Tararea «mmm» antes de hablar: si sientes cosquillas en los labios, tu voz está bien colocada.',
+  'Sube el tono en la palabra clave de cada frase y baja al terminar. Así suena seguro y no monótono.',
+  'Afinar no es talento, es oído entrenado: escucha la nota, imagínala y después cántala.',
   'Agrupa tus ideas de tres en tres. El oído recuerda mejor los tríos: «vine, vi, vencí».',
   'Antes de hablar, exhala largo. Una exhalación lenta calma el pulso en segundos.',
   'Cambia «este» por un silencio de un segundo. El silencio transmite seguridad.',

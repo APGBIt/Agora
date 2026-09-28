@@ -65,6 +65,16 @@ export function Library() {
               <Icon name="right" size={20} stroke={2} />
             </a>
 
+            <a class="banner" href="#/temas" style={{ background: 'var(--violet)' }}>
+              <span class="icon-circle" style={{ width: 48, height: 48, borderRadius: 24, background: 'rgba(255,255,255,.16)' }}><Icon name="book" size={24} /></span>
+              <span class="stack-sm grow" style={{ gap: 4 }}>
+                <span class="eyebrow" style={{ opacity: 0.85 }}>Temas</span>
+                <span style={{ fontSize: 17, fontWeight: 700 }}>Lecturas y conversaciones</span>
+                <span class="small" style={{ opacity: 0.9, lineHeight: 1.4 }}>Lee en voz alta, suma palabras nuevas y ten temas para conversar.</span>
+              </span>
+              <Icon name="right" size={20} stroke={2} />
+            </a>
+
             <div class="grid2" style={{ gap: 12 }}>
               {cats.map((c) => (
                 <a key={c.id} class="cat" href={`#/entrenar/${c.id}`}>

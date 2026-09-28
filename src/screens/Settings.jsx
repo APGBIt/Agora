@@ -12,6 +12,7 @@ import { TopBar, Seg, Sheet, toast } from '../ui/kit.jsx';
 import { diagnosticConfig } from './configs.js';
 import { localLangCache } from './asrCache.js';
 import { installState, promptInstall } from '../app/pwa.js';
+import { AUTHOR, VERSION } from './Help.jsx';
 
 const inClaudeView = () => !!(window.claude && typeof window.claude.use === 'function');
 
@@ -234,6 +235,11 @@ export function Settings({ query }) {
         )}
       </Section>
 
+      <Section id="ayuda" title="Ayuda y privacidad">
+        <a class="go-row" href="#/ayuda" style={{ background: 'var(--sunken)', color: 'var(--ink)' }}><span class="row" style={{ gap: 10 }}><Icon name="help" size={20} />Ayuda y preguntas frecuentes</span><Icon name="right" size={18} stroke={2} /></a>
+        <a class="go-row" href="#/privacidad" style={{ background: 'var(--sunken)', color: 'var(--ink)' }}><span class="row" style={{ gap: 10 }}><Icon name="shieldCheck" size={20} />Política de privacidad y datos</span><Icon name="right" size={18} stroke={2} /></a>
+      </Section>
+
       <Section id="privacidad" title="Privacidad">
         <ul class="small" style={{ margin: 0, paddingLeft: 18, lineHeight: 1.6 }}>
           <li>Tu voz se analiza en el momento. El audio y la transcripción se borran al salir del análisis.</li>
@@ -267,7 +273,7 @@ export function Settings({ query }) {
         {pwa.installed && <span class="small teal-t strong">Ágora está instalada en este dispositivo.</span>}
       </Section>
 
-      <p class="tiny muted center">Ágora · práctica de oratoria · versión 1.0</p>
+      <p class="tiny muted center">{`Ágora · creada por ${AUTHOR} · versión ${VERSION}`}</p>
 
       <Sheet open={confirmReset} onClose={() => setConfirmReset(false)} title="¿Borrar todo tu progreso?">
         <p class="muted">Se borrarán tu racha, tus puntos, tus logros, tu diagnóstico y tus historias de este dispositivo. No se puede deshacer.</p>

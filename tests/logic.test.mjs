@@ -45,7 +45,7 @@ test('misiones completas dan un protector (máximo 3)', () => {
   registerActivity(s, { kind: 'reto', refId: reto.id, practiceSec: 200, xp: 80 }, at(today, 9));
   // actividad que cumple la misión rotativa
   const byMission = {
-    respira: { kind: 'respiracion' }, trabalenguas: { kind: 'trabalenguas' }, improv: { kind: 'improv' }, historia: { kind: 'historia' }, corporal: { kind: 'guiado' },
+    respira: { kind: 'respiracion' }, trabalenguas: { kind: 'trabalenguas' }, improv: { kind: 'improv' }, historia: { kind: 'historia' }, corporal: { kind: 'guiado' }, canto: { kind: 'canto', refId: 'canto-escala' }, lectura: { kind: 'lectura', refId: 'lec-escuchar' },
     limpio: { kind: 'libre', result: { activeSec: 60, wpmSource: 'asr', fillers: { total: 0, perMin: 0, top: [] }, comps: {} } },
     ritmo: { kind: 'libre', result: { activeSec: 60, wpm: 145, wpmSource: 'asr', comps: {} } },
     pausas: { kind: 'libre', result: { activeSec: 60, pauses: { effective: 5, long: 0 }, comps: {} } },

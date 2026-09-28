@@ -92,7 +92,9 @@ const MISSION_POOL = [
   { id: 'pausas', label: 'Haz 4 pausas efectivas en una práctica', target: 1, test: (e) => (e.eff || 0) >= 4 },
   { id: 'historia', label: 'Escribe o ensaya una historia', target: 1, test: (e) => e.kind === 'historia' },
   { id: 'energia', label: 'Logra una voz expresiva en una práctica', target: 1, test: (e) => e.pitchStd != null && e.pitchStd >= 2 && e.pitchStd <= 5.5 },
-  { id: 'corporal', label: 'Haz un ejercicio de lenguaje corporal', target: 1, test: (e) => e.kind === 'guiado' },
+  { id: 'corporal', label: 'Haz un ejercicio de lenguaje corporal', target: 1, test: (e) => e.kind === 'guiado' && !(e.refId || '').startsWith('canto-') },
+  { id: 'canto', label: 'Haz un ejercicio de canto o entonación', target: 1, test: (e) => e.kind === 'canto' || (e.refId || '').startsWith('canto-') },
+  { id: 'lectura', label: 'Lee un tema en voz alta', target: 1, test: (e) => e.kind === 'lectura' },
 ];
 
 export function missionsFor(s, today, env = {}) {

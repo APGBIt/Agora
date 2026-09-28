@@ -1,8 +1,12 @@
 # Ágora
 
+Creada por **Verónica Ogando Lara**.
+
 App web para entrenar oratoria, pronunciación y storytelling con retos diarios. Funciona en el navegador del celular o de la computadora y se puede instalar como app.
 
 ## Privacidad
+
+La política completa está dentro de la app, en Ajustes → Política de privacidad y datos.
 
 - La voz se analiza en el momento, en el propio dispositivo. **No se guardan grabaciones ni transcripciones**: existen solo mientras ves tu análisis y se borran al salir.
 - En el navegador quedan únicamente tus puntuaciones, tu racha, tus logros y los textos de tus historias.
@@ -20,6 +24,8 @@ App web para entrenar oratoria, pronunciación y storytelling con retos diarios.
 - Reto del día con tres misiones, racha con protectores y logros.
 - Diagnóstico inicial con un plan de cuatro semanas.
 - Ejercicios de respiración, proyección, pronunciación (trabalenguas), ritmo y muletillas.
+- Canto para el tono y la entonación: afinar notas con afinador en vivo, escalas, arpegios y distinguir pregunta de afirmación.
+- Lecturas y conversaciones: textos para leer en voz alta, palabras nuevas, preguntas para opinar y un libro recomendado por tema.
 - Improvisación, historias con teleprompter y simulador de conversaciones: entrevista de trabajo, presentar a tu jefatura, brindis, preguntas difíciles, dar una capacitación y conversación difícil.
 - Análisis de cada práctica: palabras por minuto, muletillas (incluidas las del Caribe, como «este» o «tú sabes»), pausas, energía de voz, volumen al final de las frases y estructura.
 

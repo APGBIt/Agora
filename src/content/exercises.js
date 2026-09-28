@@ -6,6 +6,7 @@ export const CATEGORIES = [
   { id: 'diccion', title: 'Pronunciación y dicción', group: 'Dicción', tone: 'amber', icon: 'speech', desc: 'Trabalenguas, vocalización y articulación.' },
   { id: 'ritmo', title: 'Ritmo y pausas', group: 'Dicción', tone: 'amber', icon: 'clock', desc: 'Velocidad, silencios y énfasis donde importa.' },
   { id: 'proyeccion', title: 'Proyección de voz', group: 'Voz', tone: 'teal', icon: 'volume', desc: 'Volumen y resonancia sin forzar la garganta.' },
+  { id: 'canto', title: 'Canto: tono y entonación', group: 'Voz', tone: 'teal', icon: 'music', desc: 'Afina, entona y dale melodía a tu voz al hablar.' },
   { id: 'muletillas', title: 'Adiós muletillas', group: 'Dicción', tone: 'amber', icon: 'speechx', desc: 'Detecta y sustituye «este», «o sea», «¿verdad?».' },
   { id: 'storytelling', title: 'Storytelling', group: 'Estructura', tone: 'violet', icon: 'book', desc: 'Relatos que conectan y se recuerdan.' },
   { id: 'improvisacion', title: 'Improvisación', group: 'Estructura', tone: 'violet', icon: 'sparkle', desc: 'Temas al azar con 15 s para pensar.' },
@@ -135,6 +136,72 @@ export const EXERCISES = [
     goalSt: 12,
     steps: ['Con la boca cerrada, haz «mmm» en tu tono más grave.', 'Sube despacio hasta el más agudo que puedas sin forzar.', 'Baja de nuevo, como una sirena.'],
     tip: 'Una voz con más rango suena más viva y menos monótona.',
+  },
+  // Canto: tono y entonación
+  {
+    id: 'canto-calentamiento', cat: 'canto', type: 'guided', title: 'Calentamiento de cantante', minutes: 3, level: 1, xp: 20,
+    desc: 'Prepara la voz como lo hacen los cantantes antes de un concierto.',
+    steps: [
+      { name: 'Bostezo y suspiro', sec: 20, hint: 'Bosteza con la boca abierta y suelta el aire con un suspiro que baja de agudo a grave.' },
+      { name: 'Vibración de labios', sec: 30, hint: 'Haz «brrr» con los labios sueltos, como un motor, subiendo y bajando el tono.' },
+      { name: 'Tarareo', sec: 30, hint: 'Con la boca cerrada di «mmm» en una nota cómoda. Siente cosquillas en labios y nariz.' },
+      { name: 'Vocales en una nota', sec: 30, hint: 'En la misma nota canta «mi, me, ma, mo, mu» sin mover la mandíbula de más.' },
+      { name: 'Sirena suave', sec: 25, hint: 'Con «nnn» o «ng» sube despacio al agudo y baja al grave, sin forzar.' },
+      { name: 'Frase hablada', sec: 15, hint: 'Di con voz relajada: «Buenos días, qué gusto verlos». Nota cómo suena más libre.' },
+    ],
+  },
+  {
+    id: 'canto-escala', cat: 'canto', type: 'pitch', title: 'Escala do-re-mi', minutes: 2, level: 1, xp: 30,
+    desc: 'Escucha cada nota y repítela. La app te dice si estás afinada.',
+    intervals: [0, 2, 4, 5, 7, 5, 4, 2, 0],
+    hold: 2.2,
+    tip: 'Si te quedas abajo, sonríe un poco y piensa la nota «arriba» antes de cantarla.',
+  },
+  {
+    id: 'canto-arpegio', cat: 'canto', type: 'pitch', title: 'Arpegio do-mi-sol', minutes: 2, level: 2, xp: 30,
+    desc: 'Saltos de nota más grandes: entrena el oído y la flexibilidad de la voz.',
+    intervals: [0, 4, 7, 4, 0, 7, 0],
+    hold: 2.2,
+    tip: 'En los saltos grandes, respira antes y apunta a la nota sin deslizarte.',
+  },
+  {
+    id: 'canto-nota-firme', cat: 'canto', type: 'pitch', title: 'Nota firme', minutes: 2, level: 2, xp: 30,
+    desc: 'Sostén cada nota cinco segundos sin que se caiga ni tiemble.',
+    intervals: [0, 2, 4],
+    hold: 5,
+    tip: 'Apoya el aire desde el abdomen. Al final de la nota es cuando más se baja: sostenla.',
+  },
+  {
+    id: 'canto-entonacion', cat: 'canto', type: 'intonation', title: '¿Pregunta o afirmación?', minutes: 3, level: 1, xp: 30,
+    desc: 'Di la misma frase como pregunta y como afirmación. La app escucha si tu tono sube o baja al final.',
+    items: [
+      ['Vienes mañana.', '¿Vienes mañana?'],
+      ['Ya terminaste el informe.', '¿Ya terminaste el informe?'],
+      ['Llegó el nuevo equipo.', '¿Llegó el nuevo equipo?'],
+      ['La reunión es a las nueve.', '¿La reunión es a las nueve?'],
+    ],
+    tip: 'En español, la pregunta de sí o no sube al final; la afirmación baja. Exagera al principio.',
+  },
+  {
+    id: 'canto-enfasis', cat: 'canto', type: 'read', title: 'Mueve el énfasis', minutes: 3, level: 2, xp: 30,
+    desc: 'La misma frase cambia de sentido según la palabra que subes de tono.',
+    rounds: [
+      { label: 'Énfasis en «Yo»', hint: 'Sube el tono en «Yo»: fue otra persona quien lo dijo.' },
+      { label: 'Énfasis en «dije»', hint: 'Sube en «dije»: quizás lo pensé, pero no lo dije.' },
+      { label: 'Énfasis en «ella»', hint: 'Sube en «ella»: fue otra persona quien lo rompió.' },
+      { label: 'Énfasis en «vaso»', hint: 'Sube en «vaso»: rompió otra cosa.' },
+    ],
+    text: 'Yo no dije que ella rompió el vaso.',
+  },
+  {
+    id: 'canto-melodia', cat: 'canto', type: 'read', title: 'Canta y luego habla', minutes: 3, level: 2, xp: 30,
+    desc: 'Canta el texto y después dilo conservando la melodía: tu voz hablada gana vida.',
+    rounds: [
+      { label: 'Cantado en una sola nota', hint: 'Como un canto monótono: todas las sílabas en la misma nota.' },
+      { label: 'Cantado con melodía libre', hint: 'Inventa una melodía que suba en las palabras importantes.' },
+      { label: 'Hablado con esa melodía', hint: 'Ahora dilo hablando, pero conserva las subidas y bajadas.' },
+    ],
+    text: 'Buenos días a todos. Hoy quiero contarles una idea sencilla: cuando cambiamos el tono, cambiamos la atención de quien nos escucha.',
   },
   // Muletillas
   {

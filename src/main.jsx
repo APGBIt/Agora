@@ -21,6 +21,8 @@ import { Simulator } from './screens/Simulator.jsx';
 import { Stories, StoryEditor } from './screens/Stories.jsx';
 import { Progress } from './screens/Progress.jsx';
 import { Settings } from './screens/Settings.jsx';
+import { Topics, TopicDetail } from './screens/Topics.jsx';
+import { Help, Privacy } from './screens/Help.jsx';
 
 function Screen({ route }) {
   const s = useApp();
@@ -43,6 +45,9 @@ function Screen({ route }) {
     case 'progreso': return <Progress />;
     case 'ajustes': return <Settings query={q} />;
     case 'ruta': return <RouteScreen id={b} />;
+    case 'temas': return b ? <TopicDetail id={b} /> : <Topics />;
+    case 'ayuda': return <Help />;
+    case 'privacidad': return <Privacy />;
     default: return <Home />;
   }
 }
