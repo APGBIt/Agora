@@ -4,26 +4,11 @@ import { getLastResult, getAudioUrl, clearResult, discardAudio, setRecConfig } f
 import { go } from '../app/router.js';
 import { env } from '../app/env.js';
 import { Icon } from '../ui/icons.jsx';
-import { TopBar, Ring, mmss, toast } from '../ui/kit.jsx';
+import { TopBar, Ring, Bar, mmss, toast } from '../ui/kit.jsx';
 import { exerciseById } from '../content/exercises.js';
 import { exerciseHref } from './configs.js';
 import { aiProvider, aiJSON, aiErrorText, aiPermanent, improvePrompt } from '../ai/ai.js';
-import { PACE_MIN, PACE_MAX } from '../analysis/scoring.js';
-
-function Status({ kind, children }) {
-  const icon = kind === 'good' ? 'check' : kind === 'warn' ? 'alert' : 'info';
-  return <span class={`status ${kind}`}><Icon name={icon} size={14} stroke={kind === 'good' ? 2.6 : 2.2} />{children}</span>;
-}
-
-function Tile({ label, value, unit, status }) {
-  return (
-    <div class="tile">
-      <span class="small muted strong">{label}</span>
-      <span class="v tabular">{value}{unit && <small>{` ${unit}`}</small>}</span>
-      {status}
-    </div>
-  );
-}
+import { BANDS, bandFor, explainResult, highlights, wpmText } from '../analysis/explain.js';
 
 function Legend({ pauses }) {
   return (
@@ -46,6 +31,20 @@ function TranscriptText({ parts, style }) {
         return <span key={i}>{`${p.text} `}</span>;
       })}
     </p>
+  );
+}
+
+function ScoreScale({ value }) {
+  return (
+    <div class="stack-sm" style={{ gap: 6 }} aria-hidden="true">
+      <div class="scale">
+        {BANDS.map((b) => <span key={b.label} class={value >= b.min && value <= b.max ? 'on' : ''} style={{ flex: b.max - b.min + 1 }} />)}
+        <i style={{ left: `${Math.max(1, Math.min(99, value))}%` }} />
+      </div>
+      <div class="scale-labels">
+        {BANDS.map((b) => <span key={b.label} style={{ flex: b.max - b.min + 1 }} class={value >= b.min && value <= b.max ? 'on' : ''}>{b.label}</span>)}
+      </div>
+    </div>
   );
 }
 
@@ -143,11 +142,11 @@ export function Analysis() {
   }
 
   const delta = r.prevScore != null && r.overall != null ? r.overall - r.prevScore : null;
-  const est = r.wpmSource === 'acoustic';
-  const inRange = r.wpm != null && r.wpm >= PACE_MIN && r.wpm <= PACE_MAX;
   const fil = r.fillers;
-  const dropHigh = r.endDrop && r.endDrop.ratio != null && r.endDrop.ratio >= 0.4;
   const isSim = !!(r.sim && r.sim.length);
+  const band = bandFor(r.overall);
+  const rows = explainResult(r);
+  const hl = highlights(rows);
   // en el simulador, cada respuesta se muestra por separado (sin versión única «más limpia»)
   const version = isSim ? null : ai.state === 'done' ? ai.version : r.clean?.text;
   const removed = ai.state === 'done' ? null : r.clean?.removed;
@@ -178,16 +177,29 @@ export function Analysis() {
         )}
       </section>
 
-      <section class="card row" style={{ gap: 18, padding: 20, borderRadius: 20 }} aria-label="Puntuación">
-        <Ring size={112} stroke={10} value={(r.overall || 0) / 100} label={`Puntuación: ${r.overall} de 100`}>
-          <text x="56" y="64" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="34" font-weight="700" fill="var(--ink)">{r.overall}</text>
-        </Ring>
-        <div class="stack-sm" style={{ alignItems: 'flex-start' }}>
-          <span class="eyebrow teal-t">{r.title}</span>
-          <h1 class="display h2">{r.message}</h1>
-          <span class="small muted">
-            {delta == null ? 'Tu primera vez con esta práctica.' : delta > 0 ? `${delta} puntos más que tu intento anterior.` : delta < 0 ? `${-delta} puntos menos que la vez anterior. ¡A seguir!` : 'Igual que tu intento anterior.'}
-          </span>
+      <section class="card stack pad-lg" aria-label="Puntuación total">
+        <div class="row" style={{ gap: 18 }}>
+          <Ring size={108} stroke={10} value={(r.overall || 0) / 100} color={band && band.min >= 70 ? 'var(--teal)' : 'var(--amber)'} label={`Puntuación total: ${r.overall} de 100`}>
+            <text x="54" y="58" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="34" font-weight="700" fill="var(--ink)">{r.overall}</text>
+            <text x="54" y="77" text-anchor="middle" font-size="11" font-weight="600" fill="var(--muted)">de 100</text>
+          </Ring>
+          <div class="stack-sm" style={{ alignItems: 'flex-start', minWidth: 0 }}>
+            <span class="eyebrow teal-t">{r.title}</span>
+            <h1 class="display h2">{band ? band.label : r.message}</h1>
+            <span class="small" style={{ lineHeight: 1.45, color: 'var(--ink-2)' }}>{band ? band.text : ''}</span>
+          </div>
+        </div>
+        {band && <ScoreScale value={r.overall} />}
+        {hl && (
+          <div class="stack-sm" style={{ gap: 4 }}>
+            <span class="small"><strong class="teal-t">Lo más fuerte:</strong>{` ${hl.best.name.toLowerCase()}.`}</span>
+            {hl.worst && <span class="small"><strong class="amber-t">Lo que más te conviene mejorar:</strong>{` ${hl.worst.name.toLowerCase()}.`}</span>}
+          </div>
+        )}
+        <div class="row wrap" style={{ gap: 8 }}>
+          <span class="pill pill-sm tone-sunken">{`Hablaste ${mmss(r.activeSec)}`}</span>
+          {delta != null && <span class={`pill pill-sm ${delta > 0 ? 'tone-teal' : 'tone-sunken'}`}>{delta > 0 ? `+${delta} puntos vs. la vez anterior` : delta < 0 ? `${delta} puntos vs. la vez anterior` : 'Igual que la vez anterior'}</span>}
+          {delta == null && <span class="pill pill-sm tone-sunken">Primera vez con esta práctica</span>}
           {r.xpGained ? <span class="pill pill-sm tone-amber">{`+${r.xpGained} XP`}</span> : null}
         </div>
       </section>
@@ -209,7 +221,7 @@ export function Analysis() {
             <div class="between" key={i}>
               <span class="strong small">{rd.label}</span>
               <span class="small tabular">
-                {rd.wpm ? `${rd.wpm} ppm${rd.src === 'acoustic' ? ' (est.)' : ''}` : '—'}
+                {rd.wpm ? wpmText(rd.wpm, rd.src) : '—'}
                 {rd.target ? <span class="muted">{` · meta ${rd.target}`}</span> : null}
               </span>
             </div>
@@ -218,47 +230,25 @@ export function Analysis() {
         </section>
       )}
 
-      <div class="grid2">
-        <Tile
-          label="Ritmo"
-          value={r.wpm ?? '—'}
-          unit={r.wpm ? 'ppm' : null}
-          status={r.wpm == null ? <Status kind="info">Sin datos</Status> : inRange ? <Status kind="good">{`Ideal: ${PACE_MIN}–${PACE_MAX}${est ? ' · est.' : ''}`}</Status> : <Status kind="warn">{`${r.wpm > PACE_MAX ? 'Rápido' : 'Pausado'}${est ? ' · est.' : ''}`}</Status>}
-        />
-        <Tile
-          label={fil && fil.source === 'audio' ? 'Vacilaciones' : 'Muletillas'}
-          value={fil ? fil.total : '—'}
-          status={!fil ? <Status kind="info">Sin datos</Status> : fil.total === 0 ? <Status kind="good">Ninguna</Status> : <Status kind="warn">{fil.top.map((x) => `«${x.key}» ×${x.count}`).join(' · ')}</Status>}
-        />
-        <Tile
-          label="Pausas efectivas"
-          value={r.pauses ? r.pauses.effective : '—'}
-          status={!r.pauses ? <Status kind="info">Sin datos</Status> : (r.comps.pauses ?? 0) >= 85 ? <Status kind="good">Bien ubicadas</Status> : r.pauses.long > 1 ? <Status kind="warn">{`${r.pauses.long} silencios largos`}</Status> : r.pauses.perMin > 12 ? <Status kind="warn">Muy seguidas</Status> : <Status kind="warn">Pocas pausas</Status>}
-        />
-        <Tile
-          label="Duración"
-          value={mmss(r.activeSec)}
-          status={r.timing ? (r.comps.timing >= 90 ? <Status kind="good">Dentro del tiempo</Status> : <Status kind="warn">{r.timing.ratio > 1 ? `Te pasaste (${mmss(r.timing.target)})` : `Meta: ${mmss(r.timing.target)}`}</Status>) : <Status kind="info">Hablando</Status>}
-        />
-        <Tile
-          label="Energía de voz"
-          value={r.energy?.label || '—'}
-          status={!r.energy ? <Status kind="info">Sin datos</Status> : r.energy.label === 'Expresiva' ? <Status kind="good">Tono variado</Status> : <Status kind="warn">{r.energy.label === 'Monótona' ? 'Varía más el tono' : 'Tono muy cambiante'}</Status>}
-        />
-        {r.weak ? (
-          <Tile
-            label="Palabras débiles"
-            value={r.weak.total}
-            status={r.weak.total === 0 ? <Status kind="good">Hablaste con firmeza</Status> : <Status kind="warn">{r.weak.top.map((x) => `«${x.key}»`).join(' · ')}</Status>}
-          />
-        ) : (
-          <Tile
-            label="Volumen al final"
-            value={r.endDrop && r.endDrop.ratio != null ? `${Math.round((1 - r.endDrop.ratio) * 100)} %` : '—'}
-            status={!r.endDrop || r.endDrop.ratio == null ? <Status kind="info">Frases muy cortas</Status> : dropHigh ? <Status kind="warn">Cae al final</Status> : <Status kind="good">Sostenido</Status>}
-          />
-        )}
-      </div>
+      {rows.length > 0 && (
+        <section class="card stack pad-lg" aria-label="Tu resultado, área por área">
+          <div class="stack-sm" style={{ gap: 4 }}>
+            <h2 class="title">Tu resultado, área por área</h2>
+            <span class="small muted" style={{ lineHeight: 1.45 }}>La puntuación total es un promedio de estas áreas. Las primeras son las que más cuentan.</span>
+          </div>
+          {rows.map((row, i) => (
+            <div key={row.key} class="stack-sm area" style={i ? { borderTop: '1px solid var(--line)', paddingTop: 14 } : null}>
+              <div class="between-c" style={{ gap: 10 }}>
+                <span class="strong" style={{ fontSize: 15 }}>{row.name}</span>
+                <span class={`lvl ${row.level.kind}`}>{row.level.text}</span>
+              </div>
+              <span class="small strong tabular" style={{ color: 'var(--ink-2)' }}>{row.value}</span>
+              <Bar value={row.score / 100} thin tone={row.level.kind === 'good' ? '' : 'amber'} label={`${row.name}: ${row.score} de 100`} />
+              <span class="small muted" style={{ lineHeight: 1.45 }}>{row.note}</span>
+            </div>
+          ))}
+        </section>
+      )}
 
       {isSim && (
         <section class="card stack pad-lg" aria-label="Tus respuestas">

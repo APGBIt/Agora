@@ -162,7 +162,10 @@ export function Home() {
 
         <section class="card stack pad-lg" aria-label="Tus habilidades">
           <div class="between">
-            <h2 class="title">Tus habilidades</h2>
+            <div class="stack-sm" style={{ gap: 2 }}>
+              <h2 class="title">Tus habilidades</h2>
+              <span class="tiny muted">De 0 a 100, según tus prácticas</span>
+            </div>
             <a class="link-btn" href="#/progreso">Detalle</a>
           </div>
           <div class="grid2" style={{ columnGap: 20, rowGap: 14 }}>

@@ -5,11 +5,11 @@ export const LEVELS = [
   { n: 2, name: 'Voz despierta', xp: 150 },
   { n: 3, name: 'Voz clara', xp: 400 },
   { n: 4, name: 'Voz segura', xp: 800 },
-  { n: 5, name: 'Oradora convincente', xp: 1400 },
-  { n: 6, name: 'Narradora', xp: 2200 },
-  { n: 7, name: 'Comunicadora de impacto', xp: 3200 },
+  { n: 5, name: 'Palabra convincente', xp: 1400 },
+  { n: 6, name: 'Relato vivo', xp: 2200 },
+  { n: 7, name: 'Comunicación de impacto', xp: 3200 },
   { n: 8, name: 'Voz inspiradora', xp: 4500 },
-  { n: 9, name: 'Maestra de la palabra', xp: 6000 },
+  { n: 9, name: 'Dominio de la palabra', xp: 6000 },
   { n: 10, name: 'Ágora', xp: 8000 },
 ];
 
@@ -21,18 +21,18 @@ export function levelFor(xp) {
 }
 
 export const SKILLS = [
-  { key: 'claridad', label: 'Claridad' },
-  { key: 'ritmo', label: 'Ritmo' },
-  { key: 'muletillas', label: 'Sin muletillas' },
-  { key: 'storytelling', label: 'Storytelling' },
-  { key: 'energia', label: 'Energía de voz' },
-  { key: 'seguridad', label: 'Seguridad' },
+  { key: 'claridad', label: 'Claridad', help: 'Se te entiende bien y la voz llega hasta el final.' },
+  { key: 'ritmo', label: 'Ritmo', help: 'Buena velocidad y pausas entre ideas.' },
+  { key: 'muletillas', label: 'Sin muletillas', help: 'Pocas palabras de relleno como «este».' },
+  { key: 'storytelling', label: 'Contar historias', help: 'Ideas ordenadas: inicio, conflicto y cierre.' },
+  { key: 'energia', label: 'Variedad de tono', help: 'Cuánto sube y baja tu voz.' },
+  { key: 'seguridad', label: 'Seguridad', help: 'Hablas con firmeza, sin dudar ni quedarte en blanco.' },
 ];
 
 export const FOCUS = {
   ritmo: { title: 'Ritmo y pausas', challenge: ['ritmo'], exercise: 'rit-pausa-poderosa' },
   muletillas: { title: 'Adiós muletillas', challenge: ['muletillas'], exercise: 'mul-minuto-limpio' },
-  energia: { title: 'Proyección y energía', challenge: ['energia'], exercise: 'proy-sirena' },
+  energia: { title: 'Proyección y tono', challenge: ['energia'], exercise: 'proy-sirena' },
   claridad: { title: 'Claridad y dicción', challenge: ['claridad'], exercise: 'tw-tr' },
   seguridad: { title: 'Seguridad al hablar', challenge: ['seguridad', 'persuasion'], exercise: 'mul-frases-firmes' },
   storytelling: { title: 'Historias que convencen', challenge: ['storytelling', 'persuasion'], exercise: 'st-5-actos' },

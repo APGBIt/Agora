@@ -48,25 +48,36 @@ export function Help() {
       </Group>
 
       <Group title="Tu análisis">
-        <Faq q="¿Qué mide Ágora?">
+        <Faq q="¿Qué significa mi puntuación?">
+          <p>Es una nota de 0 a 100 que resume tu práctica. Se calcula como un promedio de las áreas que medimos; la velocidad y las muletillas son las que más cuentan.</p>
           <ul>
-            <li><strong>Ritmo:</strong>{` palabras por minuto. Para presentar, lo ideal está entre ${PACE_MIN} y ${PACE_MAX}.`}</li>
-            <li><strong>Muletillas:</strong> «este», «o sea», «¿verdad?», «tú sabes», «eh» y otras, y cuántas dices por minuto.</li>
-            <li><strong>Pausas efectivas:</strong> silencios de medio segundo a dos segundos entre ideas. Los de más de dos segundos cuentan como silencios largos.</li>
-            <li><strong>Energía de voz:</strong> cuánto varía tu tono. Puede ser monótona, expresiva o exagerada.</li>
-            <li><strong>Volumen al final:</strong> si sostienes la voz hasta la última palabra de cada frase.</li>
-            <li><strong>Palabras débiles:</strong> frases que restan fuerza, como «creo que», «tal vez» o «solo quería».</li>
-            <li><strong>Estructura:</strong> si tu respuesta tuvo las partes del método que practicas.</li>
+            <li><strong>85 a 100 · Excelente:</strong> hablas con claridad y seguridad.</li>
+            <li><strong>70 a 84 · Bien:</strong> buena base; pule uno o dos detalles.</li>
+            <li><strong>50 a 69 · En progreso:</strong> vas por buen camino; enfócate en una cosa a la vez.</li>
+            <li><strong>0 a 49 · Para practicar:</strong> es tu punto de partida.</li>
+          </ul>
+          <p>Debajo verás cada área con su nivel (Bien, Mejorable o A trabajar) y qué hacer para mejorarla. Lo más útil es comparar tus prácticas entre sí.</p>
+        </Faq>
+        <Faq q="¿Qué mide Ágora, en palabras sencillas?">
+          <ul>
+            <li><strong>Velocidad al hablar:</strong>{` cuántas palabras dices por minuto. Entre ${PACE_MIN} y ${PACE_MAX} se te entiende sin esfuerzo.`}</li>
+            <li><strong>Muletillas:</strong> palabras de relleno como «este», «o sea», «¿verdad?» o «tú sabes».</li>
+            <li><strong>Titubeos:</strong> sonidos de duda como «eh» o «mmm», o sílabas que alargas mientras piensas.</li>
+            <li><strong>Pausas entre ideas:</strong> silencios cortos (de medio segundo a dos segundos) que ayudan a que te entiendan. Si pasan de dos segundos, cuentan como silencios largos.</li>
+            <li><strong>Variedad de tono:</strong> cuánto sube y baja tu voz. Si casi no cambia, suena plana y cansa; si cambia demasiado, suena exagerada.</li>
+            <li><strong>Fuerza al final de las frases:</strong> si tu voz llega con fuerza hasta la última palabra o se va apagando.</li>
+            <li><strong>Frases que restan fuerza:</strong> expresiones como «creo que», «tal vez» o «solo quería», que suavizan lo que dices.</li>
+            <li><strong>Orden de tus ideas:</strong> si tu respuesta tuvo las partes del método que practicas (por ejemplo: situación, acción y resultado).</li>
           </ul>
         </Faq>
-        <Faq q="¿Por qué aparece «est.» junto al ritmo?">
-          <p>Cuando no hay transcripción, calculamos el ritmo contando sílabas en el audio. Es una estimación: puede variar alrededor de un 10 % respecto al real.</p>
+        <Faq q="¿Por qué a veces dice «aprox.»?">
+          <p>Cuando no hay transcripción, calculamos las palabras por minuto contando sílabas en el audio. Es una aproximación: puede variar alrededor de un 10 % respecto al número real.</p>
         </Faq>
         <Faq q="¿Qué tan exacta es la transcripción?">
           <p>La hace el reconocimiento de voz de tu navegador y puede confundir palabras, sobre todo con ruido. Úsala como guía: lo más útil es la tendencia de tus prácticas a lo largo de las semanas.</p>
         </Faq>
         <Faq q="¿Cómo funcionan los ejercicios de canto?">
-          <p>Primero tarareas una nota cómoda para que Ágora ubique tu voz. Luego escuchas cada nota y la repites; el afinador te muestra si tu tono va alto o bajo. En entonación, Ágora escucha si tu tono sube (pregunta) o baja (afirmación) al final de la frase.</p>
+          <p>Primero tarareas una nota cómoda para que Ágora ubique tu voz. Luego escuchas cada nota y la repites; el afinador te muestra si tu voz va más alta o más baja que la nota. En entonación, Ágora escucha si tu tono sube (pregunta) o baja (afirmación) al final de la frase.</p>
         </Faq>
       </Group>
 

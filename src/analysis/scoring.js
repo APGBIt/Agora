@@ -62,7 +62,7 @@ export function weakScore(perMin) {
   return Math.round(clamp(100 - 18 * perMin, 10, 100));
 }
 
-const WEIGHTS = { pace: 0.2, fillers: 0.2, pauses: 0.15, energy: 0.15, volume: 0.1, timing: 0.1, weak: 0.05, structure: 0.05 };
+export const WEIGHTS = { pace: 0.2, fillers: 0.2, pauses: 0.15, energy: 0.15, volume: 0.1, timing: 0.1, weak: 0.05, structure: 0.05 };
 
 export function overallScore(comps) {
   let s = 0;
@@ -75,15 +75,16 @@ export function overallScore(comps) {
   return w ? Math.round(s / w) : null;
 }
 
+// Nombre del nivel de la puntuación total (0–100).
 export function scoreMessage(s) {
   if (s == null) return 'Práctica registrada';
-  if (s >= 90) return '¡Excelente!';
-  if (s >= 80) return '¡Muy bien!';
-  if (s >= 65) return '¡Buen trabajo!';
-  if (s >= 50) return 'Vas en camino';
-  return 'Sigue practicando';
+  if (s >= 85) return 'Excelente';
+  if (s >= 70) return 'Bien';
+  if (s >= 50) return 'En progreso';
+  return 'Para practicar';
 }
 
+const listaY = (xs) => (xs.length <= 1 ? xs.join('') : `${xs.slice(0, -1).join(', ')} y ${xs[xs.length - 1]}`);
 const pl = (n, one, many) => `${n} ${n === 1 ? one : many}`;
 
 const fmtTime = (sec) => {
@@ -251,11 +252,11 @@ export function feedback(r) {
   if (c.fillers != null && r.fillers) {
     const top = r.fillers.top.map((x) => `«${x.key}»`).join(', ');
     if (c.fillers >= 85) good.push({ w: c.fillers, text: r.fillers.total ? `Casi sin muletillas: ${pl(r.fillers.total, 'muletilla', 'muletillas')} en ${fmtTime(r.activeSec)}.` : 'Hablaste sin muletillas. ¡Así se hace!' });
-    else if (r.fillers.source === 'audio') bad.push({ w: c.fillers, text: `Detectamos ${pl(r.fillers.total, 'vacilación', 'vacilaciones')} («eh», «mmm» o sílabas alargadas). Cámbialas por un silencio.`, exercise: 'mul-silencio' });
+    else if (r.fillers.source === 'audio') bad.push({ w: c.fillers, text: `Detectamos ${pl(r.fillers.total, 'titubeo', 'titubeos')} («eh», «mmm» o sílabas alargadas). Cámbialos por un silencio corto.`, exercise: 'mul-silencio' });
     else bad.push({ w: c.fillers, text: `Dijiste ${pl(r.fillers.total, 'muletilla', 'muletillas')} (${top}). Cámbiala${r.fillers.total === 1 ? '' : 's'} por un silencio de un segundo.`, exercise: 'mul-minuto-limpio' });
   }
   if (c.pauses != null && r.pauses) {
-    if (c.pauses >= 85) good.push({ w: c.pauses - 1, text: r.pauses.effective ? `Usaste ${pl(r.pauses.effective, 'pausa efectiva', 'pausas efectivas')}: tus ideas respiran.` : 'Buen manejo de los silencios.' });
+    if (c.pauses >= 85) good.push({ w: c.pauses - 1, text: r.pauses.effective ? `Hiciste ${pl(r.pauses.effective, 'pausa', 'pausas')} entre ideas: así se te entiende mejor.` : 'Buen manejo de los silencios.' });
     else if (r.pauses.long > 1) bad.push({ w: c.pauses, text: `Hubo ${pl(r.pauses.long, 'silencio largo', 'silencios largos')}. Si te pierdes, resume lo último que dijiste y sigue.`, exercise: 'imp-tema' });
     else if (r.pauses.perMin > 12) bad.push({ w: c.pauses, text: `Te detuviste muy seguido (${Math.round(r.pauses.perMin)} pausas por minuto) y se corta el hilo. Une cada idea en una sola frase y guarda la pausa para después de lo importante.`, exercise: 'rit-lectura-marcada' });
     else bad.push({ w: c.pauses, text: 'Casi no hiciste pausas. Detente un segundo después de cada idea importante.', exercise: 'rit-pausa-poderosa' });
@@ -281,7 +282,7 @@ export function feedback(r) {
   if (r.structure) {
     const miss = r.structure.parts.filter((p) => !p.hit);
     if (!miss.length) good.push({ w: 88, text: `Seguiste la estructura completa: ${r.structure.parts.map((p) => p.label.toLowerCase()).join(', ')}.` });
-    else bad.push({ w: r.comps.structure, text: `Te faltó ${miss.map((p) => `«${p.label.toLowerCase()}»`).join(' y ')}. ${miss[0].hint}`, exercise: null });
+    else bad.push({ w: r.comps.structure, text: `Te faltó ${listaY(miss.map((p) => `«${p.label.toLowerCase()}»`))}. ${miss[0].hint}`, exercise: null });
   }
   good.sort((a, b) => b.w - a.w);
   bad.sort((a, b) => a.w - b.w);

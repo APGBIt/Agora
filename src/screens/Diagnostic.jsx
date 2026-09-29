@@ -8,7 +8,7 @@ import { Icon } from '../ui/icons.jsx';
 import { TopBar } from '../ui/kit.jsx';
 import { diagnosticConfig } from './configs.js';
 
-function Range({ label, value, text, tone, lo, hi, min, max, left, mid, right }) {
+function Range({ label, value, text, tone, lo, hi, min, max, left, mid, right, help }) {
   const pos = value == null ? null : Math.max(0, Math.min(1, (value - min) / (max - min)));
   const zl = (lo - min) / (max - min);
   const zw = (hi - lo) / (max - min);
@@ -20,6 +20,7 @@ function Range({ label, value, text, tone, lo, hi, min, max, left, mid, right })
         {pos != null && <div style={{ position: 'absolute', left: `${pos * 100}%`, top: -4, width: 18, height: 18, marginLeft: -9, borderRadius: 9, background: tone === 'good' ? 'var(--teal)' : 'var(--amber)', border: '3px solid var(--surface)', boxSizing: 'border-box' }} />}
       </div>
       <div class="between tiny muted"><span>{left}</span><span>{mid}</span><span>{right}</span></div>
+      {help && <span class="tiny muted" style={{ lineHeight: 1.45 }}>{help}</span>}
     </div>
   );
 }
@@ -52,9 +53,9 @@ export function Diagnostic() {
   const focus = currentFocus(s, today);
   const wpm = m.wpm;
   const wpmTone = wpm == null ? 'info' : wpm >= 130 && wpm <= 160 ? 'good' : 'warn';
-  const wpmText = wpm == null ? 'sin datos' : `${wpm} ppm · ${wpm > 160 ? 'rápida' : wpm < 130 ? 'pausada' : 'ideal'}${m.wpmSrc === 'acoustic' ? ' (est.)' : ''}`;
+  const wpmText = wpm == null ? 'sin datos' : `${wpm} palabras/min · ${wpm > 160 ? 'rápida' : wpm < 130 ? 'lenta' : 'ideal'}${m.wpmSrc === 'acoustic' ? ' (aprox.)' : ''}`;
   const ps = m.pitchStd;
-  const psText = ps == null ? 'sin datos' : ps < 2 ? 'monótona' : ps > 5.5 ? 'muy cambiante' : 'expresiva';
+  const psText = ps == null ? 'sin datos' : ps < 2 ? 'poca' : ps > 5.5 ? 'demasiada' : 'buena';
   const sus = m.endDrop == null ? null : Math.round((1 - m.endDrop) * 100);
   const fpm = m.fillersPerMin;
   const fromOnboarding = d.day === today && s.history.filter((e) => e.kind !== 'diagnostico').length === 0;
@@ -75,12 +76,13 @@ export function Diagnostic() {
           <h2 class="title" style={{ fontSize: 16 }}>Tu perfil de voz</h2>
           <span class="row tiny muted" style={{ gap: 6 }}><span style={{ width: 16, height: 8, borderRadius: 2, background: 'var(--teal-soft)', border: '1px solid var(--teal-mid)' }} />Zona ideal</span>
         </div>
-        <Range label="Velocidad" value={wpm} text={wpmText} tone={wpmTone} min={80} max={220} lo={130} hi={160} left="Lenta" mid="130–160" right="Muy rápida" />
-        <Range label="Variación de tono" value={ps} text={psText} tone={ps != null && ps >= 2 && ps <= 5.5 ? 'good' : 'warn'} min={0} max={8} lo={2} hi={5.5} left="Monótona" mid="Expresiva" right="Exagerada" />
-        <Range label="Volumen al final de frase" value={sus} text={sus == null ? 'sin datos' : sus >= 70 ? 'sostenido' : 'cae'} tone={sus != null && sus >= 70 ? 'good' : 'warn'} min={0} max={100} lo={70} hi={100} left="Se apaga" mid="" right="Sostenido" />
+        <Range label="Velocidad" value={wpm} text={wpmText} tone={wpmTone} min={80} max={220} lo={130} hi={160} left="Lenta" mid="Ideal: 130–160" right="Muy rápida" help="Cuántas palabras dices por minuto. En la zona ideal se te entiende sin esfuerzo." />
+        <Range label="Variedad de tono" value={ps} text={psText} tone={ps != null && ps >= 2 && ps <= 5.5 ? 'good' : 'warn'} min={0} max={8} lo={2} hi={5.5} left="Plana" mid="Variada" right="Exagerada" help="Cuánto sube y baja tu voz. Una voz plana cansa; una variada mantiene la atención." />
+        <Range label="Fuerza al final de las frases" value={sus} text={sus == null ? 'sin datos' : sus >= 70 ? 'se mantiene' : 'se apaga'} tone={sus != null && sus >= 70 ? 'good' : 'warn'} min={0} max={100} lo={70} hi={100} left="Se apaga" mid="" right="Se mantiene" help="Si tu voz llega con fuerza hasta la última palabra o se va apagando." />
         <div class="stack-sm">
-          <div class="between"><span class="strong small">{m.fillerSrc === 'audio' ? 'Vacilaciones' : 'Muletillas'}</span><span class="strong small">{fpm == null ? 'sin datos' : `${fpm.toLocaleString('es-DO')} por min · ${fpm < 1.5 ? 'bajas' : fpm <= 3 ? 'moderadas' : 'altas'}`}</span></div>
+          <div class="between"><span class="strong small">{m.fillerSrc === 'audio' ? 'Titubeos' : 'Muletillas'}</span><span class="strong small">{fpm == null ? 'sin datos' : `${fpm.toLocaleString('es-DO')} por minuto · ${fpm < 1.5 ? 'pocas' : fpm <= 3 ? 'algunas' : 'muchas'}`}</span></div>
           {m.fillerTop && m.fillerTop.length > 0 && <span class="small muted">{`Las que más usas: ${m.fillerTop.map((k) => `«${k}»`).join(', ')}`}</span>}
+          <span class="tiny muted" style={{ lineHeight: 1.45 }}>{m.fillerSrc === 'audio' ? 'Sonidos de duda como «eh» o «mmm». Lo ideal: uno por minuto o menos.' : 'Palabras de relleno como «este» u «o sea». Lo ideal: una por minuto o menos.'}</span>
         </div>
       </section>
 

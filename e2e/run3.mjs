@@ -93,7 +93,7 @@ await step('canto: entonación', async () => {
 await step('ayuda y preguntas', async () => {
   await page.goto(`${url}#/ajustes`);
   await page.getByRole('link', { name: /Ayuda y preguntas frecuentes/ }).click();
-  await page.getByText('¿Qué mide Ágora?').click();
+  await page.getByText('¿Qué significa mi puntuación?').click();
   await page.getByText('Creada por Aristide Piña').waitFor();
   await shot('ayuda');
 });

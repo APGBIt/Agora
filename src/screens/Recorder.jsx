@@ -432,17 +432,17 @@ export function Recorder({ query }) {
 
             {s.settings.analysisMode !== 'transcript' && (
               <div class="grid3" style={{ gap: 8 }}>
-                <div class="metric"><span class="tiny muted">Ritmo</span><span class="v tabular">{live?.wpm ?? '—'} <span class="tiny muted">ppm</span></span><span class={`tiny strong ${live?.wpmLabel === 'En rango' ? 'ok' : 'warn'}`}>{live?.wpm ? `${live.wpmLabel}${live.source === 'acoustic' ? ' · est.' : ''}` : 'Calculando…'}</span></div>
+                <div class="metric"><span class="tiny muted">Palabras/min</span><span class="v tabular">{live?.wpm ?? '—'}</span><span class={`tiny strong ${live?.wpmLabel === 'En rango' ? 'ok' : 'warn'}`}>{live?.wpm ? { 'En rango': 'Buena velocidad', Rápido: 'Muy rápido', Pausado: 'Muy lento' }[live.wpmLabel] || live.wpmLabel : 'Calculando…'}</span></div>
                 <div class="metric"><span class="tiny muted">Muletillas</span><span class="v tabular">{live?.fillers ?? 0}</span><span class="tiny strong warn" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{live?.fillerKeys?.length ? live.fillerKeys.map((k) => `«${k}»`).join(' · ') : <span class="ok">Ninguna</span>}</span></div>
-                <div class="metric"><span class="tiny muted">Pausas</span><span class="v tabular">{live?.pauses ?? 0}</span><span class={`tiny strong ${(live?.pauses || 0) > 0 ? 'ok' : 'muted'}`}>{(live?.pauses || 0) > 0 ? 'Buen uso' : 'Aún ninguna'}</span></div>
+                <div class="metric"><span class="tiny muted">Pausas</span><span class="v tabular">{live?.pauses ?? 0}</span><span class={`tiny strong ${(live?.pauses || 0) > 0 ? 'ok' : 'muted'}`}>{(live?.pauses || 0) > 0 ? 'Bien' : 'Aún ninguna'}</span></div>
               </div>
             )}
 
             {live?.energyPos != null && (
-              <section class="stack-sm" aria-label="Energía de voz">
-                <div class="between tiny"><span class="strong">Energía de voz</span><span class="strong ok">{live.energy}</span></div>
+              <section class="stack-sm" aria-label="Variedad de tono">
+                <div class="between tiny"><span class="strong">Variedad de tono</span><span class={`strong ${live.energy === 'Expresiva' ? 'ok' : 'warn'}`}>{{ Monótona: 'Voz plana', Expresiva: 'Buena', Exagerada: 'Demasiada' }[live.energy]}</span></div>
                 <div class="meter"><i /><i /><i /><b style={{ left: `${live.energyPos * 100}%` }} /></div>
-                <div class="between tiny muted"><span>Monótona</span><span>Expresiva</span><span>Exagerada</span></div>
+                <div class="between tiny muted"><span>Plana</span><span>Variada</span><span>Exagerada</span></div>
               </section>
             )}
 

@@ -91,7 +91,7 @@ export const EXERCISES = [
       { name: 'Idea 2', sec: 18, hint: 'Otra idea, otra pausa.' },
       { name: 'Idea 3', sec: 24, hint: 'La más importante al final.' },
     ],
-    goal: { metric: 'pauses', min: 3, label: 'Al menos 3 pausas efectivas' },
+    goal: { metric: 'pauses', min: 3, label: 'Al menos 3 pausas entre ideas' },
   },
   {
     id: 'rit-tres-velocidades', cat: 'ritmo', type: 'read', title: 'Tres velocidades', minutes: 3, level: 1, xp: 30,

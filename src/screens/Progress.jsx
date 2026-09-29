@@ -135,16 +135,21 @@ export function Progress() {
         </section>
 
         <section class="card stack pad-lg" aria-label="Habilidades">
-          <div class="between"><h2 class="title" style={{ fontSize: 16 }}>Habilidades</h2><span class="tiny muted">vs. hace 30 días</span></div>
+          <div class="stack-sm" style={{ gap: 2 }}><div class="between"><h2 class="title" style={{ fontSize: 16 }}>Habilidades</h2><span class="tiny muted">cambio en 30 días</span></div><span class="tiny muted">De 0 a 100, según tus prácticas recientes.</span></div>
           {SKILLS.map((k) => {
             const v = s.skills[k.key];
             const d = deltas[k.key];
             return (
-              <div class="skill-row" key={k.key}>
-                <span class="strong">{k.label}</span>
+              <div class="stack-sm" key={k.key} style={{ gap: 4 }}>
+                <div class="between-c">
+                  <span class="strong small">{k.label}</span>
+                  <span class="row" style={{ gap: 10 }}>
+                    <span class={`tiny strong tabular ${d > 0 ? 'teal-t' : d < 0 ? 'coral-t' : 'muted'}`}>{d == null ? '' : d > 0 ? `▲ ${d}` : d < 0 ? `▼ ${-d}` : '= 0'}</span>
+                    <span class="strong tabular">{v ?? '—'}</span>
+                  </span>
+                </div>
                 <Bar value={(v || 0) / 100} thin label={`${k.label}: ${v ?? 'sin datos'}`} />
-                <span class="strong tabular" style={{ textAlign: 'right' }}>{v ?? '—'}</span>
-                <span class={`tiny strong tabular ${d > 0 ? 'teal-t' : d < 0 ? 'coral-t' : 'muted'}`} style={{ textAlign: 'right' }}>{d == null ? '' : d > 0 ? `▲ ${d}` : d < 0 ? `▼ ${-d}` : '= 0'}</span>
+                {k.help && <span class="tiny muted" style={{ lineHeight: 1.35 }}>{k.help}</span>}
               </div>
             );
           })}

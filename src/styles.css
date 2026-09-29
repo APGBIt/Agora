@@ -482,3 +482,16 @@ textarea.field.todo { border-style: dashed; border-color: var(--line-2); backgro
 .feature .t { font-size: 16px; font-weight: 700; line-height: 1.25; }
 .feature .d { font-size: 13px; line-height: 1.4; opacity: .9; }
 .item .d { overflow-wrap: anywhere; }
+
+/* ---------- Puntuación explicada ---------- */
+.scale { position: relative; display: flex; gap: 3px; height: 8px; }
+.scale > span { background: var(--sunken); border-radius: 4px; }
+.scale > span.on { background: var(--teal-mid); }
+.scale > i { position: absolute; top: -4px; width: 4px; height: 16px; margin-left: -2px; border-radius: 2px; background: var(--ink); }
+.scale-labels { display: flex; gap: 3px; }
+.scale-labels > span { font-size: 11px; line-height: 1.2; color: var(--muted); text-align: center; }
+.scale-labels > span.on { color: var(--ink); font-weight: 700; }
+.lvl { font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+.lvl.good { background: var(--teal-soft); color: var(--teal-ink); }
+.lvl.warn { background: var(--amber-soft); color: var(--amber-ink); }
+.lvl.low { background: var(--coral-soft); color: var(--coral-ink); }

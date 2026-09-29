@@ -177,7 +177,7 @@ export function Pronunciation({ id }) {
 
       {res && !res.align && !res.low && (
         <section class="card stack pad-lg" aria-label="Tu intento">
-          <div class="between"><span class="strong">Tu intento</span><span class="small muted tabular">{res.wpm ? `${res.wpm} ppm` : ''}</span></div>
+          <div class="between"><span class="strong">Tu intento</span><span class="small muted tabular">{res.wpm ? `${res.wpm} palabras/min` : ''}</span></div>
           <p class="small muted">{env.hasSR ? 'Esta vez no hubo transcripción.' : 'Este navegador no transcribe la voz.'} Escúchate y evalúate:</p>
           <div class="grid2">
             <button class="btn btn-outline" type="button" disabled={!audioUrl} onClick={playMine}><Icon name="play" size={14} />Tu voz</button>
@@ -190,7 +190,7 @@ export function Pronunciation({ id }) {
 
       <div class="stack-sm">
         <Seg label="Velocidad de lectura" value={speed} onChange={setSpeed} options={SPEEDS.map((x) => ({ value: x.value, label: x.label }))} />
-        <span class="small strong teal-t center">{res && res.wpm ? `${sp.target} · tu ritmo: ${res.wpm} ppm` : sp.target}</span>
+        <span class="small strong teal-t center">{res && res.wpm ? `${sp.target} · tu velocidad: ${res.wpm} palabras/min` : sp.target}</span>
       </div>
 
       {tw.dialect && (

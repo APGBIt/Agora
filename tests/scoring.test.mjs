@@ -76,3 +76,28 @@ test('pausas demasiado seguidas no se describen como «pocas pausas»', () => {
   assert.match(fb.improvements[0].text, /muy seguido/);
   assert.equal(fb.improvements[0].exercise, 'rit-lectura-marcada');
 });
+
+test('explicación en lenguaje claro: niveles y áreas ordenadas por peso', async () => {
+  const { bandFor, explainResult, highlights } = await import('../src/analysis/explain.js');
+  assert.equal(bandFor(92).label, 'Excelente');
+  assert.equal(bandFor(74).label, 'Bien');
+  assert.equal(bandFor(55).label, 'En progreso');
+  assert.equal(bandFor(20).label, 'Para practicar');
+  const r = {
+    wpm: 190, wpmSource: 'asr',
+    fillers: { total: 3, perMin: 3, top: [{ key: 'este', count: 3 }], source: 'texto y audio' },
+    pauses: { effective: 4, long: 0, perMin: 4 },
+    energy: { label: 'Monótona' },
+    endDrop: { judged: 5, dropped: 1, ratio: 0.2 },
+    comps: { pace: 58, fillers: 58, pauses: 100, energy: 40, volume: 90 },
+  };
+  const rows = explainResult(r);
+  assert.deepEqual(rows.map((x) => x.key), ['pace', 'fillers', 'pauses', 'energy', 'volume']);
+  assert.match(rows[0].value, /190 palabras por minuto/);
+  assert.equal(rows[3].value, 'Poca');
+  assert.equal(rows[4].value, '4 de 5 frases completas');
+  const hl = highlights(rows);
+  assert.equal(hl.best.key, 'pauses');
+  assert.equal(hl.worst.key, 'energy');
+  for (const row of rows) assert.ok(!/ppm|semitono|monótona|est\./i.test(`${row.name} ${row.value} ${row.note}`), `sin jerga: ${row.name}`);
+});

@@ -89,7 +89,7 @@ function SpeakIntro({ ex }) {
         <section class="card stack">
           <span class="eyebrow teal-t">{`${ex.rounds.length} rondas`}</span>
           {ex.rounds.map((r, i) => (
-            <div class="between" key={i}><span class="strong small">{`${i + 1}. ${r.label}`}</span><span class="small muted">{r.targetWpm ? `${r.targetWpm} ppm` : r.hint}</span></div>
+            <div class="between" key={i}><span class="strong small">{`${i + 1}. ${r.label}`}</span><span class="small muted">{r.targetWpm ? `${r.targetWpm} palabras/min` : r.hint}</span></div>
           ))}
           <span class="small muted">Durante la grabación toca «Siguiente» para pasar de una ronda a la otra.</span>
         </section>
@@ -410,13 +410,13 @@ function Glide({ ex }) {
     <main class="screen no-tab">
       <Header ex={ex} />
       <section class="card stack pad-lg" aria-live="polite">
-        <div class="between"><span class="strong">Tu rango</span><span class="display tabular" style={{ fontSize: 28 }}>{range != null ? `${range.toFixed(1)} st` : '—'}</span></div>
+        <div class="between"><span class="strong">Tu recorrido de voz</span><span class="display tabular" style={{ fontSize: 28 }}>{range != null ? `${Math.round(range)} ${Math.round(range) === 1 ? 'tecla' : 'teclas'}` : '—'}</span></div>
         <svg viewBox="0 0 300 100" width="100%" height="110" role="img" aria-label="Recorrido de tu tono en los últimos segundos" style={{ background: 'var(--bg)', borderRadius: 12 }}>
           <path d="M0 95H300" stroke="var(--line-2)" stroke-width="1" />
           {pts && <polyline points={pts} fill="none" stroke="var(--teal)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />}
         </svg>
         <Bar value={range != null ? Math.min(1, range / ex.goalSt) : 0} tone={range != null && range >= ex.goalSt ? '' : 'amber'} />
-        <span class="small muted">{`Meta: ${ex.goalSt} semitonos (una octava). Tu mejor marca: ${best ? `${best} st` : '—'}.`}</span>
+        <span class="small muted">{`Medimos cuántas teclas de piano recorre tu voz de lo más grave a lo más agudo. Meta: ${ex.goalSt} teclas (una octava). Tu mejor marca: ${best ? `${Math.round(best)} teclas` : '—'}.`}</span>
         {phase === 'done' && range != null && <span class="small strong teal-t">{range >= ex.goalSt ? '¡Rango amplio! Tu voz tiene mucho espacio para expresar.' : 'Buen trabajo. Con práctica diaria el rango crece.'}</span>}
       </section>
       <ol class="small" style={{ margin: 0, paddingLeft: 18, lineHeight: 1.7 }}>{ex.steps.map((t, i) => <li key={i}>{t}</li>)}</ol>
